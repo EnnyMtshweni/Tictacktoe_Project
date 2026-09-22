@@ -5,23 +5,23 @@ export default function Scoreboard() {
 
   return (
     <section className="panel scoreboard" aria-label="Scoreboard">
-      <div className="panel__title">
-        <span>Scoreboard</span>
+      <div className="panel__header">
+        <span className="panel__title">Scoreboard</span>
         <button type="button" className="link-btn" onClick={resetScores}>
-          reset
+          Reset
         </button>
       </div>
       <div className="scoreboard__grid">
-        <div className="scoreboard__cell">
-          <span className="scoreboard__value scoreboard__value--x">{scores.X}</span>
+        <div className="scoreboard__cell scoreboard__cell--x">
+          <span className="scoreboard__value">{scores.X}</span>
           <span className="scoreboard__name">{players.X}</span>
         </div>
-        <div className="scoreboard__cell">
-          <span className="scoreboard__value scoreboard__value--draw">{scores.draws}</span>
+        <div className="scoreboard__cell scoreboard__cell--draw">
+          <span className="scoreboard__value">{scores.draws}</span>
           <span className="scoreboard__name">Draws</span>
         </div>
-        <div className="scoreboard__cell">
-          <span className="scoreboard__value scoreboard__value--o">{scores.O}</span>
+        <div className="scoreboard__cell scoreboard__cell--o">
+          <span className="scoreboard__value">{scores.O}</span>
           <span className="scoreboard__name">{players.O}</span>
         </div>
       </div>

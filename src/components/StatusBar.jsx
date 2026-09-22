@@ -6,19 +6,22 @@ export default function StatusBar() {
   let headline
   let sub
   if (winner) {
-    headline = `${players[winner]} wins`
+    headline = `${players[winner]} wins!`
     sub = `Winner: ${winner}`
   } else if (isDraw) {
-    headline = "It's a draw"
-    sub = 'Board full — no line'
+    headline = "It's a draw!"
+    sub = 'Board full — no winner'
   } else {
-    headline = `${players[currentPlayer]}'s move`
-    sub = `Next player: ${currentPlayer}`
+    headline = `${players[currentPlayer]}'s turn`
+    sub = `Next up: ${currentPlayer}`
   }
 
   return (
-    <div className={`status${winner ? ' status--win' : ''}${isDraw ? ' status--draw' : ''}`} role="status" aria-live="polite">
-      <span className="status__label">Reading</span>
+    <div
+      className={`status${winner ? ' status--win' : ''}${isDraw ? ' status--draw' : ''}`}
+      role="status"
+      aria-live="polite"
+    >
       <span className="status__headline">{headline}</span>
       <span className="status__sub">
         {sub}

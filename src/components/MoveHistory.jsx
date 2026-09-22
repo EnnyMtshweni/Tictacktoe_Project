@@ -16,10 +16,15 @@ export default function MoveHistory() {
 
   return (
     <section className="panel history" aria-label="Move history">
-      <div className="panel__title">
-        <span>Move history</span>
-        <button type="button" className="link-btn" onClick={undo} disabled={currentMove === 0}>
-          undo
+      <div className="panel__header">
+        <span className="panel__title">Move history</span>
+        <button
+          type="button"
+          className="link-btn"
+          onClick={undo}
+          disabled={currentMove === 0}
+        >
+          Undo
         </button>
       </div>
       <ol className="history__list">

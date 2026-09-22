@@ -6,10 +6,10 @@ export default function Controls() {
   return (
     <div className="controls">
       <button type="button" className="btn btn--primary" onClick={newRound}>
-        New round
+        New Round
       </button>
-      <button type="button" className="btn" onClick={restartAll}>
-        Restart everything
+      <button type="button" className="btn btn--secondary" onClick={restartAll}>
+        Restart All
       </button>
     </div>
   )
