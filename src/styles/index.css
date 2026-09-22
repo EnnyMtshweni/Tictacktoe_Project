@@ -719,3 +719,224 @@ button, input {
     transition: none !important;
   }
 }
+
+/* -------------------------------------------------------------------
+   Header layout — title + mute button side by side
+------------------------------------------------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+
+/* Mute / unmute toggle button */
+.mute-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--card-border);
+  border-radius: 50%;
+  background: var(--card-bg);
+  color: var(--text-mid);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0 0 0 / 0.12);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+  /* Sit next to the title without pushing layout */
+  position: absolute;
+  right: 0;
+}
+
+.mute-btn:hover {
+  background: var(--white);
+  color: var(--text-dark);
+  transform: scale(1.08);
+}
+
+.mute-btn:focus-visible {
+  outline: 3px solid var(--o-orange);
+  outline-offset: 3px;
+}
+
+/* -------------------------------------------------------------------
+   Win modal — overlay
+------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0 0 0 / 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: overlay-in 0.2s ease-out;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* -------------------------------------------------------------------
+   Win modal — card
+------------------------------------------------------------------- */
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 24px;
+  border: 4px solid var(--card-border);
+  box-shadow:
+    0 8px 0 var(--wood-shadow),
+    0 16px 40px rgba(0 0 0 / 0.28);
+  overflow: hidden;
+  animation: card-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: scale(0.7) translateY(24px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* X-winner theme — blue tones */
+.modal--x {
+  background: linear-gradient(160deg, #dbeeff 0%, #eef6ff 60%, #fffbe6 100%);
+  border-color: var(--x-blue);
+}
+
+/* O-winner theme — yellow/orange tones */
+.modal--o {
+  background: linear-gradient(160deg, #fff9db 0%, #fff3cd 60%, #ffe8b0 100%);
+  border-color: var(--o-orange);
+}
+
+/* -------------------------------------------------------------------
+   Fireworks SVG
+------------------------------------------------------------------- */
+.fireworks {
+  display: block;
+  width: 100%;
+  height: 130px;
+  /* Extra padding above the content */
+  margin-bottom: -10px;
+}
+
+/* -------------------------------------------------------------------
+   Fireworks keyframe — scale up then fade out
+------------------------------------------------------------------- */
+@keyframes fw-burst {
+  0%   { opacity: 0;   transform: scale(0.2); }
+  20%  { opacity: 1;   transform: scale(1);   }
+  60%  { opacity: 0.9; transform: scale(1.1); }
+  100% { opacity: 0;   transform: scale(1.3); }
+}
+
+/* -------------------------------------------------------------------
+   Modal close button — top-right corner
+------------------------------------------------------------------- */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255 255 255 / 0.7);
+  border: 2px solid var(--card-border);
+  border-radius: 50%;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.modal-close:hover {
+  background: var(--white);
+  color: var(--text-dark);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.modal-close:focus-visible {
+  outline: 3px solid var(--o-orange);
+  outline-offset: 3px;
+}
+
+/* -------------------------------------------------------------------
+   Modal body — heading, sub-text, play-again button
+------------------------------------------------------------------- */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 28px 28px;
+  text-align: center;
+}
+
+.modal-heading {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 7vw, 40px);
+  color: var(--title-orange);
+  -webkit-text-stroke: 3px var(--white);
+  paint-order: stroke fill;
+  text-shadow:
+    0 3px 0 rgba(0 0 0 / 0.12),
+    0 5px 14px rgba(0 0 0 / 0.1);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.modal-sub {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 3vw, 18px);
+  color: var(--text-dark);
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-sub strong {
+  color: var(--title-orange);
+  font-family: var(--font-head);
+  font-size: 1.1em;
+}
+
+.modal-play-btn {
+  margin-top: 8px;
+  font-size: 18px;
+  padding: 12px 36px;
+  /* Slightly larger than the regular .btn for emphasis */
+  box-shadow: 0 5px 0 #c85a00, 0 8px 20px rgba(0 0 0 / 0.18);
+}
+
+.modal-play-btn:hover:not(:disabled) {
+  box-shadow: 0 7px 0 #c85a00, 0 10px 24px rgba(0 0 0 / 0.22);
+}
+
+.modal-play-btn:active:not(:disabled) {
+  box-shadow: 0 2px 0 #c85a00, 0 4px 10px rgba(0 0 0 / 0.15);
+}
+
+/* -------------------------------------------------------------------
+   Reduced motion — disable all modal + fireworks animation
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay { animation: none !important; }
+  .modal-card    { animation: none !important; }
+
+  /* fw-burst groups get animation stripped; StaticBurst is shown instead */
+  .fireworks g[style*="fw-burst"] {
+    animation: none !important;
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  .modal-close { transition: none !important; }
+}
